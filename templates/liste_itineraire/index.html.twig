@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Itineraires{% endblock %}
+
+{% block body %}
+
+<div class="table">
+    <h1 style="margin-top: 5%;"> La liste des Itineraires</h1>
+    <table class="table table-bordered table-hover" style="margin-top: 3%;" >
+        <tr style="background-color: darkblue">
+            <th>ID</th>
+            <th>NOM</th>
+            <th>PRENOM</th>
+            <th>TELEPHONE</th>
+            <th>LIGNE BUS</th>
+            <th>TYPES DE BUS</th>
+            <th>HORRAIRE</th>
+        {% for itis in itinis %}
+            <tr>
+                <td>{{ itis.id}}</td>
+                <td>{{ itis.user.nom }}</td>
+                <td>{{ itis.user.prenom}}</td>
+                <td>{{ itis.user.telephone}}</td>
+                <td>{{ itis.ligneBus.numeroligne }}</td>
+                <td>{{ itis.bus.typesbus }}</td>
+                <td>{{ itis.horaire | date('H:i')}}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} l'itineraire de la ligne 7{% endblock %}
+
+{% block body %}
+
+  <div class="container">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>My Google Map</title>
+      <style>
+        #map{
+          height: 600px;
+          width: 100%;
+        }
+      </style>
+    </head>
+    <body>
+
+    <h1>Ligne 7 OUAKAM - PALAIS</h1>
+    <div id="map"></div>
+
+
+    <script>
+      function initMap(){
+        //Map options
+        var options = {
+          zoom: 12,
+          center:{lat: 14.732631 , lng:  -17.493007}
+        }
+        // new map
+        var map = new google.maps.Map(document.getElementById('map'), options);
+        // customer marker
+        var iconBase = 'http://maps.google.com/mapfiles/ms/icons/bus.png';
+        //array of Marrkeers
+        var markers = [
+          {
+            coords:{lat: 14.732631 , lng:  -17.493007},img:iconBase,con:'<h3>Terminus Ouakam<h3>'
+          },
+          {
+            coords:{lat: 14.731005, lng: -17.493602},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.729665, lng: -17.492578},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.729109, lng: -17.490284},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.727725, lng: -17.488104},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.727373, lng: -17.485295},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.727103, lng: -17.483158},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.725705, lng: -17.482761},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.724149, lng: -17.483324},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.722355, lng: -17.484783},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.720999, lng: -17.485813},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.718626, lng: -17.486991},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.717534, lng: -17.486223},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.715655, lng: -17.483072},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.708783, lng: -17.481382},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.705767, lng: -17.478693},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.702251, lng: -17.473056},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.698628, lng: -17.468663},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.695759, lng: -17.465292},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.693376, lng: -17.462505},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.691556, lng: -17.460332},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.689034, lng: -17.457749},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.68645, lng: -17.455485},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.683387, lng: -17.452399},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.681432, lng: -17.450298},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.679416, lng: -17.44819},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.67849, lng: -17.447152},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.674881, lng: -17.443362},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.670573, lng: -17.440272},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.661917, lng: -17.43715},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.6584, lng: -17.435733},img:iconBase,con:'<h3>Arret 7<h3>'
+          },
+          {
+            coords:{lat: 14.652762, lng: -17.433588},img:iconBase,con:'<h3>TERMINUS PALAIS<h3>'
+          }
+
+
+        ];
+
+        //loopthrough markers
+        for(var i = 0; i <markers.length; i++){
+          //add markeers
+          addMarker(markers[i]);
+        }
+
+        //function for the plotting markers on the map
+        function addMarker (props){
+          var marker = new google.maps.Marker({
+            position: props.coords,
+            map:map,
+            icon:props.img
+          });
+          var infoWindow = new google.maps.InfoWindow({
+            content:props.con,
+          });
+          marker.addListener("click", () => {
+            infoWindow.open(map, marker);
+          });
+        }
+      }
+    </script>
+
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjuoyBNhaIB18owcYBXs9O24dCelBrEGI&callback=initMap"
+            defer
+    ></script>
+
+    </body>
+    </html>
+  </div>
+{% endblock %}

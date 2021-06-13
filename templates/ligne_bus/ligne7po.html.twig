@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} l'itineraire de la ligne 7{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCw2puu5dL21gK1_5PkUutj3enL4Ys43UQ&callback=initMap&libraries=&v=weekly"
+                    defer
+            ></script>
+            <style type="text/css">
+                /* Set the size of the div element that contains the map */
+                #map {
+                    height: 700px;
+                    /* The height is 400 pixels */
+                    width: 100%;
+                    /* The width is the width of the web page */
+                }
+            </style>
+            <script>
+                // Initialize and add the map
+                function initMap() {
+                    // The location of Uluru
+                    const uluru = {  lat: 14.732631 , lng:  -17.493007  };
+                    // The map, centered at Uluru
+                    const map = new google.maps.Map(document.getElementById("map"), {
+                        zoom: 13,
+                        center: uluru,
+                    });
+                    // The marker, positioned at Uluru
+                    const marker = new google.maps.Marker({
+                        position: uluru,
+                        map: map,
+                    });
+                }
+            </script>
+        </head>
+        <body>
+        <h3 style="margin-top: 100px;">Ligne 7 PALAIS - OUAKAM </h3>
+        <!--The div element for the map -->
+        <div id="map"></div>
+        </body>
+        </html>
+    </div>
+
+{% endblock %}

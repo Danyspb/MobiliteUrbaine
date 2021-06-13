@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Compte{% endblock %}
+
+{% block body %}
+
+    <div class="container" style="margin-top: 4%">
+        <h1 style="margin-bottom: 3%"> Ajout d'un Nouveau Compte</h1>
+        <div class="form-group">
+            {{ form_start(form) }}
+            <div class="row">
+                <div class="col-md-4">{{ form_row(form.nom,{'attr':{'placeholder': 'Saisissez le prenom'}}) }}</div>
+                <div class="col-md-4">{{ form_row(form.prenom,{'attr':{'placeholder': 'Saisissez le prenom'}}) }}</div>
+                <div class="col-md-4">{{ form_row(form.adresse,{'attr':{'placeholder': 'Saisissez l\'adresse'}}) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">{{ form_row(form.telephone,{'attr':{'placeholder': 'Saisissez le numero de telephone'}}) }}</div>
+                <div class="col-md-4">{{ form_row(form.cni,{'attr':{'placeholder': 'Saisissez le numero de cni'}}) }}</div>
+                <div class="col-md-4">{{ form_row(form.numpermis,{'label':'Numero du permis', 'attr':{'placeholder':'Saisissez le numero du permis'}}) }}</div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">{{ form_row(form.login,{'attr':{'placeholder': 'Saisissez le login'}}) }}</div>
+                <div class="col-md-4">{{ form_row(form.password,{'attr':{'placeholder': 'Saisissez le mots de passe'}}) }}</div>
+                <div class="col-md-4">{{ form_row(form.poste,{'attr':{'placeholder': 'Choisissez le Poste'}}) }}</div>
+
+            </div>
+            <button type="submit" class="btn btn-success" style="margin-top: 2%">Ajouter</button>
+            {{ form_end(form) }}
+        </div>
+    </div>
+
+
+    <div class="table">
+        <table class="table table-bordered table-hover" style="margin-top: 10px;" >
+            <tr style="background-color: darkblue">
+                <th>ID</th>
+                <th>NOM</th>
+                <th>PRENOM</th>
+                <th>ADRESSE</th>
+                <th>TELEPHONE</th>
+                <th>NUMERO CNI</th>
+                <th>NUMERO PERMIS</th>
+                <th>LOGIN</th>
+                <th>PASSWORD</th>
+                <th>POSTE</th>
+                <th>ACTION</th>
+            </tr>
+            {% for afus in afu %}
+                <tr>
+                    <td>{{ afus.id}}</td>
+                    <td>{{ afus.nom }}</td>
+                    <td>{{ afus.prenom }}</td>
+                    <td>{{ afus.adresse }}</td>
+                    <td>{{ afus.telephone }}</td>
+                    <td>{{ afus.cni }}</td>
+                    <td>{{ afus.numpermis }}</td>
+                    <td>{{ afus.login}}</td>
+                    <td>{{ afus.password}}</td>
+                    <td>{{ afus.poste}}</td>
+                    <td>
+                        <a href="{{ path('user_delete', {'id': afus.id})}}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+{% endblock %}

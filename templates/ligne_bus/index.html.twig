@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LigneBusController!{% endblock %}
+
+{% block body %}
+<div class="table">
+    <h1 style="margin-top: 5%;"> La liste des Lignes</h1>
+    <table class="table table-active table-hover" style="margin-top: 3%;" >
+        <tr style="background-color: darkblue">
+            <th>LIGNE DE Bus</th>
+            <th>TYPES DE BUS</th>
+            <th>HORRAIRES</th>
+            <th>ACTION</th>
+        </tr>
+        {% for lis in li %}
+            <tr>
+                <td>{{ lis.ligneBus.numeroligne}}</td>
+                <td>{{ lis.bus.typesbus}}</td>
+                <td>{{ lis.horaire | date('H:i')}}</td>
+                <td>
+                    <a href="{{ path('7OP')}}" class="btn btn-success">Afficher l'itineraire</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
